@@ -1,0 +1,93 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.fpq</groupId>
+  <artifactId>springCloud2-zuul</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>springCloud2 zuul gateway</name>
+  <description>springCloud2 zuul网关</description>
+  
+    <parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.8.RELEASE</version>
+	</parent>
+	<!-- 管理依赖 -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Finchley.M7</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<!-- 引入zuul网关jar包 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+		</dependency>
+		<!-- SpringBoot整合eureka客户端 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<!-- 引入热部署的jar包 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+			<scope>true</scope>
+		</dependency>
+		<!-- apollo 携程apollo配置中心框架 -->
+		<dependency>
+			<groupId>com.ctrip.framework.apollo</groupId>
+			<artifactId>apollo-client</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ctrip.framework.apollo</groupId>
+			<artifactId>apollo-core</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!-- swagger-spring-boot -->
+		<dependency>
+			<groupId>com.spring4all</groupId>
+			<artifactId>swagger-spring-boot-starter</artifactId>
+			<version>1.7.0.RELEASE</version>
+		</dependency>
+		
+	</dependencies>
+	<!-- 注意： 这里必须要添加， 否者各种依赖有问题 -->
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/libs-milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+    <!-- 添加一个SpringBoot的构建的插件,若不添加则在虚拟机中启动时会报“jar中没有主清单属性”错误 -->
+    <build>
+	  <plugins>
+	  	<plugin>
+	  		<groupId>org.springframework.boot</groupId>
+	 		<artifactId>spring-boot-maven-plugin</artifactId>
+	 		<configuration>
+	 		  <!-- fork:如果没有该配置，devtools不会起作用； -->
+	 		  <fork>true</fork>
+	 		</configuration>
+	  	</plugin>
+	  </plugins>
+	 </build>
+
+</project>

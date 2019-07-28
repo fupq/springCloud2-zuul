@@ -1,0 +1,16 @@
+###服务名称(服务注册到eureka名称)  
+spring:
+  application:
+    name: springCloud2-zuul
+###服务启动端口号 
+server:
+  port: 8101
+###配置appid
+app:
+  id: springCloud2-zuul
+###springBoot集成apollo客户端
+apollo:
+  bootstrap:
+    enabled: true
+    namespaces: application
+###其他配置请在apollo中管理:http://192.168.1.111:8070/config.html apollo admin
